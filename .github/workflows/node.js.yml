@@ -16,14 +16,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.6.0
-      with:
-        mongodb-version: '4.2'
+    - name: Start MongoDB from docker-compose
+      run: docker-compose up -d mongo
     
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
